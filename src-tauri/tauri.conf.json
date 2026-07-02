@@ -4,10 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.dune.messenger",
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
-    "devUrl": "http://localhost:1420",
-    "frontendDist": "../dist"
+    "frontendDist": "../"
   },
   "app": {
     "withGlobalTauri": true,

@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dune Messenger</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dune Messenger</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div id="top-bar">
+    <div id="brand">
+      <span id="brand-dot"></span>
+      <span id="brand-name">DUNE</span>
+    </div>
+    <div id="top-bar-actions">
+      <button id="open-settings-btn" class="ghost-btn">Modifications &amp; Plugins</button>
+    </div>
+  </div>
+
+  <!-- Main App Shell: table-based structural layout (no flex/grid) -->
+  <div id="app-shell">
+
+    <!-- Left Column: Chats / Channels -->
+    <div id="sidebar" class="shell-col">
+      <div class="sidebar-header">Channels</div>
+      <div id="chat-list">
+        <!-- Populated dynamically by main.js -->
+      </div>
+    </div>
+
+    <!-- Center/Right Column: Message Viewport + Input Bar -->
+    <div id="main-area" class="shell-col">
+      <div id="chat-header">
+        <span id="active-chat-name">Select a channel</span>
+      </div>
+
+      <div id="message-viewport">
+        <!-- Populated dynamically by main.js -->
+      </div>
+
+      <div id="input-bar">
+        <input type="text" id="message-input" placeholder="Message the channel..." autocomplete="off" />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Settings Panel / Modal: Modifications & Plugins -->
+  <div id="settings-overlay" class="hidden">
+    <div id="settings-panel">
+      <div class="settings-panel-header">
+        <span>Modifications &amp; Plugins</span>
+        <button id="close-settings-btn" class="icon-btn">&times;</button>
+      </div>
+
+      <div class="settings-panel-body">
+        <p class="settings-description">
+          Dune plugins run in a sandboxed environment and cannot crash the core application.
+          Manually install a plugin below, or drop verified <code>.dunebin</code> packages into
+          your local <code>.dune_mods</code> directory.
+        </p>
+
+        <button id="install-plugin-btn" class="primary-btn">Install Plugin From File</button>
+
+        <div class="settings-subheader">Active Modules</div>
+        <div id="plugin-list">
+          <!-- Populated dynamically by main.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
 </html>
