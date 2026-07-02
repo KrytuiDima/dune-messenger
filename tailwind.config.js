@@ -7,15 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: "#0d1117",
-        panel: "#131a22",
-        'panel-raised': "#1a2330",
-        hover: "#212c3b",
-        'border-subtle': "#232f3e",
-        accent: "#4fa3ff",
-        'accent-dim': "#2c6bb0",
-        'bubble-self': "#235282",
-        'bubble-other': "#1c2530",
+        void: "#020617", // slate-950
+        panel: "#09090b", // zinc-950
+        'panel-raised': "#18181b", // zinc-900
+        hover: "#27272a", // zinc-800
+        'border-subtle': "#1e293b", // slate-800
+        accent: "#3b82f6", // blue-500
+        'accent-dim': "#2563eb", // blue-600
+        'bubble-self': "#3b82f6", // blue-500
+        'bubble-other': "#18181b", // zinc-900
       }
     },
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, LayoutGrid, Plus, Compass } from 'lucide-react';
+import { MessageSquare, Users, Radio, Settings, Puzzle } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -7,62 +7,63 @@ function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-const NavigationRail = ({ activeTab, onTabChange }) => {
-  const servers = [
-    { id: 'server-1', name: 'Dune Official', initial: 'D' },
-    { id: 'server-2', name: 'Plugin Hub', initial: 'P' },
+const NavigationRail = ({ activeTab, onTabChange, onOpenSettings }) => {
+  const folders = [
+    { id: 'all', icon: <MessageSquare size={22} />, label: 'All Chats' },
+    { id: 'groups', icon: <Users size={22} />, label: 'Groups' },
+    { id: 'channels', icon: <Radio size={22} />, label: 'Channels' },
   ];
 
   return (
-    <nav className="w-[72px] bg-panel flex flex-col items-center py-3 space-y-2 border-r border-border-subtle shrink-0">
-      <NavItem
-        active={activeTab === 'dms'}
-        onClick={() => onTabChange('dms')}
-        icon={<MessageSquare size={24} />}
-        label="Direct Messages"
-      />
+    <nav className="w-16 bg-panel flex flex-col items-center py-4 border-r border-border-subtle shrink-0">
+      <div className="flex-1 w-full space-y-4">
+        {folders.map((folder) => (
+          <NavItem
+            key={folder.id}
+            active={activeTab === folder.id}
+            onClick={() => onTabChange(folder.id)}
+            icon={folder.icon}
+            label={folder.label}
+          />
+        ))}
+      </div>
 
-      <div className="w-8 h-[2px] bg-border-subtle rounded-full mx-auto my-1" />
-
-      {servers.map((server) => (
+      <div className="space-y-4 w-full">
         <NavItem
-          key={server.id}
-          active={activeTab === server.id}
-          onClick={() => onTabChange(server.id)}
-          label={server.name}
-        >
-          {server.initial}
-        </NavItem>
-      ))}
-
-      <NavItem icon={<Plus size={24} />} label="Add a Server" className="text-success hover:bg-success hover:text-white" />
-      <NavItem icon={<Compass size={24} />} label="Explore Discoverable Servers" />
+            icon={<Puzzle size={22} />}
+            label="Plugins"
+            onClick={onOpenSettings}
+        />
+        <NavItem
+            icon={<Settings size={22} />}
+            label="Settings"
+            onClick={onOpenSettings}
+        />
+      </div>
     </nav>
   );
 };
 
-const NavItem = ({ children, icon, active, onClick, label, className }) => {
+const NavItem = ({ icon, active, onClick, label }) => {
   return (
-    <div className="group relative flex items-center justify-center w-full">
-      {/* Active Indicator */}
+    <button
+      onClick={onClick}
+      title={label}
+      className={cn(
+        "w-full flex flex-col items-center justify-center py-2 transition-all relative group",
+        active ? "text-accent" : "text-gray-500 hover:text-gray-300"
+      )}
+    >
+      {active && (
+        <div className="absolute left-0 w-0.5 h-6 bg-accent rounded-r-full" />
+      )}
       <div className={cn(
-        "absolute left-0 w-1 bg-white rounded-r-full transition-all duration-200",
-        active ? "h-10" : "h-0 group-hover:h-5"
-      )} />
-
-      <button
-        onClick={onClick}
-        title={label}
-        className={cn(
-          "w-12 h-12 flex items-center justify-center rounded-[24px] transition-all duration-200 overflow-hidden",
-          "bg-panel-raised text-accent hover:rounded-[16px] hover:bg-accent hover:text-white",
-          active && "rounded-[16px] bg-accent text-white",
-          className
-        )}
-      >
-        {icon || children}
-      </button>
-    </div>
+          "p-2 rounded-xl transition-all",
+          active && "bg-accent/10"
+      )}>
+        {icon}
+      </div>
+    </button>
   );
 };
 

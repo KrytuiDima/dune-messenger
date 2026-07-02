@@ -1,0 +1,13 @@
+
+> dune-messenger-frontend@0.1.0 dev
+> vite
+
+
+  VITE v8.1.2  ready in 583 ms
+
+  ➜  Local:   http://localhost:1420/
+  ➜  Network: use --host to expose
+(node:226014) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/postcss.config.js?t=1782986085653 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
